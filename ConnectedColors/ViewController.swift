@@ -27,6 +27,10 @@ class ViewController: UIViewController {
         colorService.send(colorName: "green")
     }
     
+    @IBAction func purpleTapped() {
+        colorService.send(colorName: "purple")
+    }
+    
     func change(color: UIColor) {
         UIView.animate(withDuration: 0.5) { 
             self.view.backgroundColor = color
@@ -44,11 +48,14 @@ extension ViewController: ColorServiceManagerDelegate {
     
     func colorChanged(manager: ColorServiceManager, colorString: String) {
         OperationQueue.main.addOperation {
+            
             switch colorString {
             case "blue":
                 self.change(color: .blue)
             case "green":
                 self.change(color: .green)
+            case "purple":
+                self.change(color: .purple)
             default:
                 print("unknown color value received: \(colorString)")
             }
